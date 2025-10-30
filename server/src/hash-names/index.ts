@@ -1,3 +1,5 @@
+import { MUTATIONS } from "../db/queries/queries";
+import type { NewMarketItem } from "../db/schema";
 import type { MarketSearchRenderResponse } from "./types";
 
 const MARKET_SEARCH_URL =
@@ -53,7 +55,33 @@ async function gatherMarketItems(offset: number) {
   });
 
   const marketItems = await fetchMarketSearchPage(offset);
-  console.log(marketItems?.start);
+  
+  marketItems?.results.forEach(async (result) => {
+    const newMarketItem: NewMarketItem = {
+      name: result.name,
+      hashName: result.hash_name,
+      sellListings: result.sell_listings,
+      sellPrice: result.sell_price,
+      sellPriceText: result.sell_price_text,
+      appIcon: result.app_icon,
+      appName: result.app_name,
+      appId: result.asset_description.appid,
+      classId: result.asset_description.classid,
+      instanceId: result.asset_description.instanceid,
+      backgroundColor: result.asset_description.background_color,
+      iconUrl: result.asset_description.icon_url,
+      tradable: result.asset_description.tradable,
+      assetName: result.asset_description.name,
+      nameColor: result.asset_description.name_color,
+      type: result.asset_description.type,
+      marketName: result.asset_description.market_name,
+      marketHashName: result.asset_description.market_hash_name,
+      commodity: result.asset_description.commodity,
+      salePriceText: result.sale_price_text,
+    };
+
+    await MUTATIONS.insertMarketItem(newMarketItem);
+  })
   await gatherMarketItems(offset + 10);
 }
 

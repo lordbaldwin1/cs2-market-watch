@@ -1,0 +1,23 @@
+CREATE TABLE "market_items" (
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"name" text NOT NULL,
+	"hash_name" text NOT NULL,
+	"sell_listings" real NOT NULL,
+	"sell_price" real NOT NULL,
+	"sell_price_text" text NOT NULL,
+	"app_icon" text NOT NULL,
+	"app_name" text NOT NULL,
+	"app_id" integer NOT NULL,
+	"class_id" text NOT NULL,
+	"instance_id" text NOT NULL,
+	"background_color" text NOT NULL,
+	"icon_url" text NOT NULL,
+	"tradable" integer NOT NULL,
+	"asset_name" text NOT NULL,
+	"name_color" text NOT NULL,
+	"type" text NOT NULL,
+	"market_name" text NOT NULL,
+	"market_hash_name" text NOT NULL,
+	"commodity" integer NOT NULL,
+	"sale_price_text" text NOT NULL
+);

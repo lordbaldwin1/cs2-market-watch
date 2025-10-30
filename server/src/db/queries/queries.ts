@@ -10,7 +10,7 @@ export const MUTATIONS = {
       .insert(marketItems)
       .values(newItem)
       .onConflictDoUpdate({
-        target: [marketItems.hashName, marketItems.marketHashName],
+        target: marketItems.marketHashName,
         set: {
           name: newItem.name,
           sellListings: newItem.sellListings,
@@ -28,7 +28,6 @@ export const MUTATIONS = {
           nameColor: newItem.nameColor,
           type: newItem.type,
           marketName: newItem.marketName,
-          marketHashName: newItem.marketHashName,
           commodity: newItem.commodity,
           salePriceText: newItem.salePriceText,
         },

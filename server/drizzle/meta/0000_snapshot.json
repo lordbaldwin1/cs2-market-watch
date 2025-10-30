@@ -1,5 +1,5 @@
 {
-  "id": "683f3349-fef5-4377-9366-b2d841c58497",
+  "id": "44776e7d-308c-4a3e-87ec-7367308c2302",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -139,7 +139,22 @@
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
+      "uniqueConstraints": {
+        "market_items_hash_name_unique": {
+          "name": "market_items_hash_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "hash_name"
+          ]
+        },
+        "market_items_market_hash_name_unique": {
+          "name": "market_items_market_hash_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "market_hash_name"
+          ]
+        }
+      },
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false

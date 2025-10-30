@@ -1,5 +1,5 @@
 import { MUTATIONS } from "../db/queries/queries";
-import type { NewMarketItem } from "../db/schema";
+import type { MarketItem, NewMarketItem } from "../db/schema";
 import type { MarketSearchRenderResponse } from "./types";
 
 const MARKET_SEARCH_URL =
@@ -80,7 +80,8 @@ async function gatherMarketItems(offset: number) {
       salePriceText: result.sale_price_text,
     };
 
-    await MUTATIONS.insertMarketItem(newMarketItem);
+    const [addedItem] = await MUTATIONS.insertMarketItem(newMarketItem);
+    console.log(addedItem ? `Item added ${addedItem.hashName}` : "Failed to add item");
   })
   await gatherMarketItems(offset + 10);
 }

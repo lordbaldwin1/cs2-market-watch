@@ -19,5 +19,7 @@ CREATE TABLE "market_items" (
 	"market_name" text NOT NULL,
 	"market_hash_name" text NOT NULL,
 	"commodity" integer NOT NULL,
-	"sale_price_text" text NOT NULL
+	"sale_price_text" text NOT NULL,
+	CONSTRAINT "market_items_hash_name_unique" UNIQUE("hash_name"),
+	CONSTRAINT "market_items_market_hash_name_unique" UNIQUE("market_hash_name")
 );
